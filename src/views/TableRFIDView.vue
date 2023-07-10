@@ -10,9 +10,10 @@
       <table class="table-auto">
         <thead>
             <tr>
-            <th>Song</th>
-            <th>Artist</th>
-            <th>Year</th>
+            <th>Foto</th>
+            <th>Nomor RFID</th>
+            <th>Waktu Scan</th>
+            <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -20,16 +21,21 @@
             <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
             <td>Malcolm Lockyer</td>
             <td>1961</td>
+            <td>Memakai Helm.</td>
             </tr>
             <tr>
             <td>Witchy Woman</td>
             <td>The Eagles</td>
             <td>1972</td>
+            <td>Memakai Helm.</td>
+
             </tr>
             <tr>
             <td>Shining Star</td>
             <td>Earth, Wind, and Fire</td>
             <td>1975</td>
+            <td>Memakai Helm.</td>
+
             </tr>
         </tbody>
         </table>
