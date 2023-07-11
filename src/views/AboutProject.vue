@@ -1,6 +1,6 @@
 <template>
     <main class="about-project-view">
-        <H1>About Project View</H1>
-        <p>Ini about project view.</p>
+        <H1>About Project</H1>
+        <p>Project ini dikerjakan untuk menyelesaikan tugas akhir saya.</p>
     </main>
 </template>
