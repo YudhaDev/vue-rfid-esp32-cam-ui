@@ -7,8 +7,6 @@
 
   <!-- <div class="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10"> -->
   <div class="container bg-gray-200 rounded-3xl mx-auto p-8 m-8">
-
-
     <div>
       <span>
         <p class="center text-3xl text-gray-700 font-bold mb-5">
@@ -20,13 +18,26 @@
     <table class="table-auto text-center rounded-3xl">
       <thead>
         <tr>
-          <th class="bg-blue-100 border text-left px-8 py-4">Foto</th>
+          <th class="bg-blue-100 border text-left px-8 py-4">ID</th>
           <th class="bg-blue-100 border text-left px-8 py-4">Nomor RFID</th>
+          <th class="bg-blue-100 border text-left px-8 py-4">Foto</th>
           <th class="bg-blue-100 border text-left px-8 py-4">Waktu Scan</th>
-          <th class="bg-blue-100 border text-left px-8 py-4">Status</th>
+          <!-- <th class="bg-blue-100 border text-left px-8 py-4">Status</th> -->
         </tr>
       </thead>
       <tbody>
+        <tr v-for="item in data" :key="id">
+          <td>{{ item.id }}</td>
+          <td>{{ item.rfid_number }}</td>
+          <td><img ref="{{  }}">
+          </img>
+            {{ item.img_name }}
+          </td>
+          <td>{{ item.date_created }}</td>
+
+        </tr>
+      </tbody>
+      <!-- <tbody>
         <tr class="hover:bg-gray-50">
           <td><img
               src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?cs=srgb&dl=pexels-pixabay-220453.jpg&fm=jpg"
@@ -53,8 +64,22 @@
           <td>Memakai Helm.</td>
 
         </tr>
-      </tbody>
+      </tbody> -->
     </table>
+
+    <div>
+      <h1>API DATA</h1>
+      <ul>
+        <li v-for="item in data">
+          {{ item.id }}
+        </li>
+      </ul>
+      <ul>
+        <li v-for="item in data" :key="item.id">
+          {{ item.rfid_number }}
+        </li>
+      </ul>
+    </div>
 
   </div>
 </template>
@@ -64,3 +89,28 @@
     padding: 1rem;
   }
 </style>
+
+<script lang="ts">
+import axios from "axios";
+  export default {
+    data() {
+      return {
+        data : []
+      }
+    },
+    mounted() {
+      this.getData();
+    },
+    methods: {
+      async getData() {
+        console.error("Masuk getData.")
+        try {
+          const response = await axios.get("http://127.0.0.1:5000/get-all")
+          this.data = response.data;
+        } catch (error) {
+          console.error("Error dalam mengambil data.", error);
+        }
+      }
+    }
+  }
+</script>
