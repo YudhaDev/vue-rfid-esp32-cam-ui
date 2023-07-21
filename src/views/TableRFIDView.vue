@@ -29,9 +29,7 @@
         <tr v-for="item in data" :key="id">
           <td>{{ item.id }}</td>
           <td>{{ item.rfid_number }}</td>
-          <td><img ref="{{  }}">
-          </img>
-            {{ item.img_name }}
+          <td><img :src=item.img_name width="200" height="100">
           </td>
           <td>{{ item.date_created }}</td>
 
@@ -80,6 +78,17 @@
         </li>
       </ul>
     </div>
+    
+    <div>
+      <h1>
+        Python Console:
+      </h1>
+      <div>
+        <pre>
+          {{ consoleOutput }}
+        </pre>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -95,8 +104,23 @@ import axios from "axios";
   export default {
     data() {
       return {
-        data : []
+        data : [],
+        consoleOutput: ""
       }
+    },
+    created() {
+        this.websocket = new WebSocket("ws://localhost:8000");
+        this.websocket.onmessage = (event) => {
+          this.consoleOutput += event.data + "\n";
+        };
+        this.websocket.onclose = (event) => {
+          if(event.code !== 1000) {
+            console.error("Websocket closed with code ${event.code}");
+          }
+        }
+    },
+    beforeDestroy() {
+        this.websocket.close();
     },
     mounted() {
       this.getData();

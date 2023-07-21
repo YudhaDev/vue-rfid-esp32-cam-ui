@@ -2,8 +2,8 @@
     <aside>
         <img src="../assets/logo.svg" alt="vue" />
         <div class="vertical-linear">
-            <RouterLink to="/table-view">Tabel Scan</RouterLink>
-            <RouterLink to="/about-project">Tentang</RouterLink>
+            <RouterLink to="/table-view"><span class="material-icons">view_list</span></RouterLink>
+            <RouterLink to="/about-project"><span class="material-icons">info</span></RouterLink>
         </div>
     </aside>
 </template>
@@ -33,6 +33,7 @@
     .vertical-linear {
         display: flex;
         flex-direction: column;
+        margin-top: 40vh;
     }
 
 
