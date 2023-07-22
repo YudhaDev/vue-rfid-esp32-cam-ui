@@ -11,6 +11,9 @@ import SidebarVue from './components/Sidebar.vue'
 </script>
 
 <style lang="scss">
+.my-container {
+  margin-left: 20em;
+}
 :root {
   --primary: #075985;
   --primary-alt: #075985;
