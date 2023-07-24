@@ -2,9 +2,15 @@
     <aside>
         <!-- <img src="../assets/logo.svg" alt="vue" /> -->
         <div>
-            <h1 class="text-4xl" style="text-align: center;">RFID Helm</h1>
+            <Router-link to="/"><h1 class="text-4xl" style="text-align: center;">RFID Helm</h1></Router-link>
         </div>
         <div class="vertical-linear">
+            <RouterLink to="/scan">
+                <div class="nav-item-wrapper">
+                    <span class="material-icons flex-item">view_list</span>
+                    <p>Mulai Scan</p>
+                </div>
+                </RouterLink>
             <RouterLink to="/table-view">
                 <div class="nav-item-wrapper">
                     <span class="material-icons flex-item">view_list</span>

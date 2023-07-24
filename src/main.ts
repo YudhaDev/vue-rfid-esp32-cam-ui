@@ -9,6 +9,9 @@ import App from './App.vue'
 import { createRouter, createWebHistory } from 'vue-router'
 import TableRFIDView from './views/TableRFIDView.vue'
 import AboutProject from './views/AboutProject.vue'
+import WelcomeView from './views/WelcomeView.vue'
+import ScanView from './views/ScanView.vue'
+
 
 const router = createRouter({
     history : createWebHistory(),
@@ -22,6 +25,16 @@ const router = createRouter({
             path    : '/about-project',
             component: () => AboutProject,
             name    : "AboutProject"
+        },
+        {
+            path : '/',
+            component: () => WelcomeView,
+            name: 'welcome'
+        } ,
+        {
+            path: '/scan',
+            component: () => ScanView,
+            name: 'scan'
         }
     ]
 })
