@@ -60,6 +60,7 @@
 
     .nav-item-wrapper {
         display: flex;
+        padding: 10px;
 
     }
     .flex-item {

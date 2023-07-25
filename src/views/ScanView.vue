@@ -47,6 +47,7 @@ export default {
     created() {
     },
     mounted() {
+        console.error("xndrive: menkoneksi ke socketio")
         this.socket = io('http://localhost:5000'); // Replace with your backend server URL
         const canvas = this.$refs.canvas;
         const ctx = canvas.getContext('2d');

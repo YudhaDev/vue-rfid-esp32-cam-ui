@@ -13,6 +13,8 @@ import SidebarVue from './components/Sidebar.vue'
 <style lang="scss">
 .my-container {
   margin-left: 20em;
+  min-width: 100vh;
+  padding-left: 20em;
 }
 :root {
   --primary: #075985;
