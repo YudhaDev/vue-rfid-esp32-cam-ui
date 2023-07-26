@@ -1,13 +1,38 @@
 <template>
-    <div class="my-container">
-        <canvas ref="canvas" :width="width" :height="height"></canvas>
-        <button @click="handleClick">Mulai Scan</button>
-        <!-- <ScrollingText :text="scrolling_text" :speed="5" /> -->
-        <PersistentTextArea />
-        
+    <div class="scan-container">
+        <div class="scan-flex">
+            <h1 class="text-3xl font-blod pb-2">Video Stream Kamera</h1>
+            <div v-show="shimmer" id="loading-shimer" class="bg-slate-200 my-div animate-pulse mb-3" ></div>
+            <canvas v-show="canvas" id="video-canvas" class="mb-3" ref="canvas" :width="width" :height="height" ></canvas>
+            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 
+            focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
+            mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none 
+            dark:focus:ring-blue-800" @click="handleClick">Mulai Scan</button>
+            <!-- <ScrollingText :text="scrolling_text" :speed="5" /> -->
+            <!-- <PersistentTextArea /> -->
+        </div>
+
+
     </div>
 </template>
   
+<style scoped>
+.scan-container {
+    margin-left: 15em;
+    padding: 5em;
+}
+
+.scan-flex {
+    display: flex;
+    flex-direction: column;
+}
+
+.my-div {
+    width: 640px;
+    height: 480px;
+}
+</style>
+
 <script>
 import io from 'socket.io-client';
 // import ScrollingText from '../components/ScrollingText.vue';
@@ -25,11 +50,15 @@ export default {
             height: 480, // Change according to the video frame size
             websocket_scan: null,
             // scrolling_text : "text scroll"
-            text_area_content: ""
+            text_area_content: "",
+            shimmer: true,
+            canvas: false
         };
     },
     methods: {
         handleClick() {
+            this.shimmer = false
+            this.canvas = true
             this.websocket = new WebSocket("ws://localhost:5201");
             this.websocket.onmessage = (event) => {
                 this.consoleOutput += event.data + "\n";
@@ -41,7 +70,7 @@ export default {
             }
         },
         appendString() {
-            this.text_area_content += "icikiwir \n" 
+            this.text_area_content += "icikiwir \n"
         }
     },
     created() {

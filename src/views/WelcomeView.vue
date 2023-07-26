@@ -1,7 +1,7 @@
 <template>
     <div class="my-container my-centered">
-        <h1>Selamat Datang</h1>
-        <p>di Aplikasi Scan RFID beserta Scan Wajah</p>
+        <h1 class="text-3xl font-bold pb-2">Selamat Datang</h1>
+        <p>Di sistem pengecekan dengan menggunakan RFID dan scan Helm. </p>
     </div>
 </template>
 

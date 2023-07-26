@@ -34,7 +34,7 @@
 
       </table>
 
-      <table class="table-auto">
+      <!-- <table class="table-auto">
         <thead>
           <tr>
             <th>Song</th>
@@ -59,7 +59,7 @@
             <td>1975</td>
           </tr>
         </tbody>
-      </table>
+      </table> -->
 
       <!-- <div>
         <h1>API DATA</h1>
@@ -76,9 +76,9 @@
       </div> -->
 
       <div>
-        <h1>
+        <!-- <h1>
           Python Console:
-        </h1>
+        </h1> -->
         <div>
           <pre>
           {{ consoleOutput }}
@@ -97,6 +97,7 @@ img {
 
 .my-container-table {
   margin-left: 15em;
+  padding: 5em;
 }
 </style>
 
