@@ -1,23 +1,25 @@
 <template>
     <aside>
         <!-- <img src="../assets/logo.svg" alt="vue" /> -->
-        <div>
-            <Router-link to="/"><h1 class="text-4xl" style="text-align: center;">RFID Helm</h1></Router-link>
+        <div class="exclude">
+            <Router-link to="/"><h1 class="text-4xl" style="text-align: left;">RFID</h1></Router-link>
+            <Router-link to="/"><h1 class="text-4xl" style="text-align: left;">Helm</h1></Router-link>
+            <Router-link to="/"><h1 class="text-4xl" style="text-align: left;">Detection</h1></Router-link>
         </div>
         <div class="vertical-linear">
-            <RouterLink to="/scan">
+            <RouterLink class="rounded-xl" to="/scan">
                 <div class="nav-item-wrapper">
-                    <span class="material-icons flex-item">view_list</span>
+                    <span class="material-icons flex-item">barcode_reader</span>
                     <p>Mulai Scan</p>
                 </div>
                 </RouterLink>
-            <RouterLink to="/table-view">
+            <RouterLink class="rounded-xl" to="/table-view">
                 <div class="nav-item-wrapper">
                     <span class="material-icons flex-item">view_list</span>
                     <p>Tabel Hasil Scan</p>
                 </div>
                 </RouterLink>
-            <RouterLink to="/about-project">
+            <RouterLink class="rounded-xl" to="/about-project">
                 <div class="nav-item-wrapper">
                     <span class="material-icons flex-item">info</span>
                     <p>Tentang Project</p>
@@ -25,10 +27,20 @@
                 </RouterLink>
             <!-- <RouterLink to="/about-project"><span class="material-icons">info</span></RouterLink> -->
         </div>
+        <div>
+            <version_component />
+        </div>
     </aside>
 </template>
 
-<script setup>
+<script>
+import version_component from '../components/Version.vue';
+
+export default {
+    components : {
+        version_component
+    }
+}
 </script>
 
 <style class="scss" scoped>
@@ -50,6 +62,11 @@
             position: fixed;
             z-index: 99;
         }
+    }
+
+    .router-link-active {
+        color: rgb(24, 24, 24);
+        background-color: white;
     }
 
     .vertical-linear {
