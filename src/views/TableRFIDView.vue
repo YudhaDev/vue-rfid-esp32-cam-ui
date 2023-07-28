@@ -1,5 +1,5 @@
 <template>
-  <div class="my-container-table flex-1">
+  <div :class="storeToggle.pinia_collapsed_sidebar ? 'my-container-table-collapsed' : 'my-container-table'" class="flex-1">
     <!-- <div class="container mx-auto bg-gray-200 rounded-xl shadow border p-8 m-10"> -->
     <div class="">
       <div>
@@ -98,12 +98,27 @@ img {
 .my-container-table {
   margin-left: 15em;
   padding: 5em;
+  transition: all 0.3s ease;
+
+}
+
+.my-container-table-collapsed {
+  margin-left: 5em;
+  padding: 5em;
+  transition: all 0.3s ease;
 }
 </style>
 
 <script lang="ts">
 import axios from "axios";
+import {useStoreToggle} from '../stores/store'
+
 export default {
+  setup () {
+    const storeToggle = useStoreToggle();
+
+    return {storeToggle}
+  },
   data() {
     return {
       data: [],

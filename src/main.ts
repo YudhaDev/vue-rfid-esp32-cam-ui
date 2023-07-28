@@ -44,4 +44,7 @@ const app = createApp(App)
 app.use(createPinia())
 app.use(router)
 
+// Membuat global variable
+app.config.globalProperties.$my_global = false
+
 app.mount('#app')

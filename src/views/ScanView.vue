@@ -1,5 +1,5 @@
 <template>
-    <div class="scan-container">
+    <div class="" :class="storeToggle.pinia_collapsed_sidebar? 'scan-container-collapsed' : 'scan-container-expanded'">
         <div class="scan-flex">
             <h1 class="text-3xl font-blod pb-2">Video Stream Kamera</h1>
             <div v-show="shimmer" id="loading-shimer" class="bg-slate-200 my-div animate-pulse mb-3" ></div>
@@ -17,9 +17,16 @@
 </template>
   
 <style scoped>
-.scan-container {
+.scan-container-expanded {
     margin-left: 15em;
     padding: 5em;
+    transition: all 0.3s ease;
+}
+.scan-container-collapsed {
+    margin-left: 5em;
+    padding: 5em;
+    transition: all 0.3s ease;
+
 }
 
 .scan-flex {
@@ -35,10 +42,15 @@
 
 <script>
 import io from 'socket.io-client';
-// import ScrollingText from '../components/ScrollingText.vue';
 import PersistentTextArea from '../components/PersistentTextArea.vue'
+import {useStoreToggle} from '../stores/store';
 
 export default {
+    setup () {
+        const storeToggle = useStoreToggle();
+
+        return {storeToggle}
+    },
     components: {
         // ScrollingText
         PersistentTextArea
