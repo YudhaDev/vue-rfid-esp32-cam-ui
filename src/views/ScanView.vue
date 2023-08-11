@@ -1,18 +1,19 @@
 <template>
-    <div class="" :class="storeToggle.pinia_collapsed_sidebar? 'scan-container-collapsed' : 'scan-container-expanded'">
-        <div class="scan-flex">
-            <h1 class="text-3xl font-blod pb-2">Video Stream Kamera</h1>
-            <div v-show="shimmer" id="loading-shimer" class="bg-slate-200 my-div animate-pulse mb-3" ></div>
-            <canvas v-show="canvas" id="video-canvas" class="mb-3" ref="canvas" :width="width" :height="height" ></canvas>
-            <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 
+    <div>
+        <div class="" :class="storeToggle.pinia_collapsed_sidebar ? 'scan-container-collapsed' : 'scan-container-expanded'">
+            <div class="scan-flex">
+                <h1 class="text-3xl font-blod pb-2">Video Stream Kamera</h1>
+                <div v-show="shimmer" id="loading-shimer" class="bg-slate-200 my-div animate-pulse mb-3"></div>
+                <canvas v-show="canvas" id="video-canvas" class="mb-3" ref="canvas" :width="width"
+                    :height="height"></canvas>
+                <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 
             focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 
             mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none 
             dark:focus:ring-blue-800" @click="handleClick">Mulai Scan</button>
-            <!-- <ScrollingText :text="scrolling_text" :speed="5" /> -->
-            <!-- <PersistentTextArea /> -->
+                <!-- <ScrollingText :text="scrolling_text" :speed="5" /> -->
+                <!-- <PersistentTextArea /> -->
+            </div>
         </div>
-
-
     </div>
 </template>
   
@@ -22,6 +23,7 @@
     padding: 5em;
     transition: all 0.3s ease;
 }
+
 .scan-container-collapsed {
     margin-left: 5em;
     padding: 5em;
@@ -43,17 +45,20 @@
 <script>
 import io from 'socket.io-client';
 import PersistentTextArea from '../components/PersistentTextArea.vue'
-import {useStoreToggle} from '../stores/store';
+import { useStoreToggle, usePopupToggle } from '../stores/store';
+import Popup from '../components/popupMsg.vue'
 
 export default {
-    setup () {
+    setup() {
         const storeToggle = useStoreToggle();
+        const popupToggle = usePopupToggle();
 
-        return {storeToggle}
+        return { storeToggle, popupToggle }
     },
     components: {
         // ScrollingText
-        PersistentTextArea
+        PersistentTextArea,
+        Popup
     },
     data() {
         return {
@@ -69,6 +74,7 @@ export default {
     },
     methods: {
         handleClick() {
+            console.error("Mulai scan")
             this.shimmer = false
             this.canvas = true
             this.websocket = new WebSocket("ws://localhost:5201");

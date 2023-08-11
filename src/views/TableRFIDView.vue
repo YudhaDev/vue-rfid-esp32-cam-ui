@@ -90,11 +90,7 @@
   </div>
 </template>
 
-<style lang="scss" scoped>
-img {
-  padding: 1rem;
-}
-
+<style>
 .my-container-table {
   margin-left: 15em;
   padding: 5em;
@@ -107,6 +103,14 @@ img {
   padding: 5em;
   transition: all 0.3s ease;
 }
+</style>
+
+<style lang="scss" scoped>
+img {
+  padding: 1rem;
+}
+
+
 </style>
 
 <script lang="ts">

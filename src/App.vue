@@ -14,9 +14,10 @@
 </template>
 
 <script setup>
+import Popup from './components/popupMsg.vue'
 import { RouterLink, RouterView } from 'vue-router'
 import SidebarVue from './components/Sidebar.vue'
-import {useStoreToggle} from '../src/stores/store'
+import {useStoreToggle, usePopupToggle} from '../src/stores/store'
 
 const storeToggle = useStoreToggle();
 
@@ -24,7 +25,7 @@ const storeToggle = useStoreToggle();
 
 <style lang="scss">
 .button-toggle-sidebar {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   color: white;
   background: var(--dark);
@@ -35,7 +36,7 @@ const storeToggle = useStoreToggle();
 }
 
 .button-toggle-sidebar-collapsed {
-  position: absolute;
+  position: fixed;
   z-index: 10;
   color: white;
   background: var(--dark);
