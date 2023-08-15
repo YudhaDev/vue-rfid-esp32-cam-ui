@@ -18,24 +18,6 @@
 </template>
   
 <style scoped>
-.scan-container-expanded {
-    margin-left: 15em;
-    padding: 5em;
-    transition: all 0.3s ease;
-}
-
-.scan-container-collapsed {
-    margin-left: 5em;
-    padding: 5em;
-    transition: all 0.3s ease;
-
-}
-
-.scan-flex {
-    display: flex;
-    flex-direction: column;
-}
-
 .my-div {
     width: 640px;
     height: 480px;

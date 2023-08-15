@@ -1,7 +1,8 @@
 <template>
   <div class="app">
     <div class="">
-      <span :class="storeToggle.pinia_collapsed_sidebar? 'button-toggle-sidebar-collapsed' : 'button-toggle-sidebar'" class="material-icons button-toggle-sidebar rounded-r-xl" @click="storeToggle.toggleSidebar">
+      <span :class="storeToggle.pinia_collapsed_sidebar ? 'button-toggle-sidebar-collapsed' : 'button-toggle-sidebar'"
+        class="material-icons button-toggle-sidebar rounded-r-xl" @click="storeToggle.toggleSidebar">
         navigate_next</span>
     </div>
     <SidebarVue />
@@ -17,13 +18,30 @@
 import Popup from './components/popupMsg.vue'
 import { RouterLink, RouterView } from 'vue-router'
 import SidebarVue from './components/Sidebar.vue'
-import {useStoreToggle, usePopupToggle} from '../src/stores/store'
+import { useStoreToggle, usePopupToggle } from '../src/stores/store'
 
 const storeToggle = useStoreToggle();
 
 </script>
 
 <style lang="scss">
+.scan-container-expanded {
+    margin-left: 15em;
+    padding: 5em;
+    transition: all 0.3s ease;
+}
+
+.scan-container-collapsed {
+    margin-left: 5em;
+    padding: 5em;
+    transition: all 0.3s ease;
+
+}
+.scan-flex {
+  display: flex;
+  flex-direction: column;
+}
+
 .button-toggle-sidebar {
   position: fixed;
   z-index: 10;
@@ -118,4 +136,5 @@ button {
 
 .route-leave-active {
   transition: all 0.3s ease-in;
-}</style>
+}
+</style>

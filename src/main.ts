@@ -12,6 +12,7 @@ import AboutProject from './views/AboutProject.vue'
 import WelcomeView from './views/WelcomeView.vue'
 import ScanView from './views/ScanView.vue'
 import KehadiranView from './views/TabelKehadiranVeiw.vue'
+import RegisterView from './views/RegisterView.vue'
 
 
 const router = createRouter({
@@ -41,7 +42,14 @@ const router = createRouter({
             path: '/kehadiran-view',
             component: () => KehadiranView,
             name: 'kehadiran'
-        }
+        },
+        {
+            path: '/register-rfid',
+            component: () => RegisterView,
+            name: 'register'
+        } 
+        
+
     ]
 })
 

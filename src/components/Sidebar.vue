@@ -28,6 +28,12 @@
                     <p>{{ storeToggle.pinia_collapsed_sidebar ? '' : 'Scan Pulang' }}</p>
                 </div>
             </RouterLink>
+            <RouterLink class="rounded-xl" to="/register-rfid">
+                <div class="nav-item-wrapper">
+                    <span class="material-icons flex-item">barcode_reader</span>
+                    <p>{{ storeToggle.pinia_collapsed_sidebar ? '' : 'Register RFID' }}</p>
+                </div>
+            </RouterLink>
             <RouterLink class="rounded-xl" to="/kehadiran-view">
                 <div class="nav-item-wrapper">
                     <span class="material-icons flex-item">view_list</span>
@@ -76,11 +82,11 @@ export default {
         }
     },
     methods: {
-        sidebarToggle() {
-            this.global_collapsed_sidebar = !this.global_collapsed_sidebar
-            console.error("sadawdad")
-            console.error(this.global_collapsed_sidebar)
-        }
+        // sidebarToggle() {
+        //     this.global_collapsed_sidebar = !this.global_collapsed_sidebar
+        //     console.error("sadawdad")
+        //     console.error(this.global_collapsed_sidebar)
+        // }
     }
 }
 </script>
