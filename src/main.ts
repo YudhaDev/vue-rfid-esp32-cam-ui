@@ -11,6 +11,7 @@ import TableRFIDView from './views/TableRFIDView.vue'
 import AboutProject from './views/AboutProject.vue'
 import WelcomeView from './views/WelcomeView.vue'
 import ScanView from './views/ScanView.vue'
+import ScanPulangView from './views/ScanPulangView.vue'
 import KehadiranView from './views/TabelKehadiranVeiw.vue'
 import RegisterView from './views/RegisterView.vue'
 
@@ -37,6 +38,11 @@ const router = createRouter({
             path: '/scan',
             component: () => ScanView,
             name: 'scan'
+        },
+        {
+            path: '/scan-pulang',
+            component: () => ScanPulangView,
+            name: 'scanpulang'
         },
         {
             path: '/kehadiran-view',

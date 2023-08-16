@@ -12,15 +12,15 @@ export const useStoreToggle = defineStore('storeToggle', {
     }
 })
 
-export const usePopupToggle = defineStore('popupToggle', {
-    state: () => ({
-        pinia_popup_show: false,
-    }),
-    actions: {
-        togglePopup() {
-            this.pinia_popup_show = !this.pinia_popup_show
-            console.error(this.pinia_popup_show)
-        }
-    }
+// export const usePopupToggle = defineStore('popupToggle', {
+//     state: () => ({
+//         pinia_popup_show: false,
+//     }),
+//     actions: {
+//         togglePopup() {
+//             this.pinia_popup_show = !this.pinia_popup_show
+//             console.error(this.pinia_popup_show)
+//         }
+//     }
 
-})
+// })

@@ -15,10 +15,10 @@
 </template>
 
 <script setup>
-import Popup from './components/popupMsg.vue'
+// import Popup from './components/popupMsg.vue'
 import { RouterLink, RouterView } from 'vue-router'
 import SidebarVue from './components/Sidebar.vue'
-import { useStoreToggle, usePopupToggle } from '../src/stores/store'
+import { useStoreToggle } from '../src/stores/store'
 
 const storeToggle = useStoreToggle();
 

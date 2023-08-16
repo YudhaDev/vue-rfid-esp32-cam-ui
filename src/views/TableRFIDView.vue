@@ -145,6 +145,7 @@ export default {
       } catch (error) {
         console.error("Error dalam mengambil data.", error);
       }
+      console.error(this.data)
     }
   }
 }

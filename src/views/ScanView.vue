@@ -27,20 +27,17 @@
 <script>
 import io from 'socket.io-client';
 import PersistentTextArea from '../components/PersistentTextArea.vue'
-import { useStoreToggle, usePopupToggle } from '../stores/store';
-import Popup from '../components/popupMsg.vue'
+import { useStoreToggle } from '../stores/store';
 
 export default {
     setup() {
         const storeToggle = useStoreToggle();
-        const popupToggle = usePopupToggle();
 
-        return { storeToggle, popupToggle }
+        return { storeToggle }
     },
     components: {
         // ScrollingText
         PersistentTextArea,
-        Popup
     },
     data() {
         return {

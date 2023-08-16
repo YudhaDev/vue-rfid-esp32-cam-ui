@@ -18,8 +18,8 @@
             >Nomer RFID</label
           >
           <input
-            v-model="this.formData.rfid_number"
-            type="text"
+            v-model="rfid_number"
+            type="input"
             name="rfid"
             id="rfid"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -42,8 +42,8 @@
             >Nama</label
           >
           <input
-            v-model="formData.nama"
-            type="text"
+            v-model="nama"
+            type="input"
             name="name"
             id="name"
             class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
@@ -58,7 +58,7 @@
             >Seksi Bagian</label
           >
           <select
-            v-model="formData.seksi_bagian"
+            v-model="seksi_bagian"
             id="seksi-bagian"
             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           >
@@ -75,7 +75,7 @@
           Simpan
         </button>
       </form>
-      <p>Received data: {{ rfid_socketio }}</p>
+      <!-- <p>Received data: {{ rfid_socketio }}</p> -->
     </div>
   </div>
 </template>
@@ -85,6 +85,7 @@ import io from 'socket.io-client';
 import { useStoreToggle } from '../stores/store'
 import {useModalToggle} from '../stores/modal_state'
 import ModalRFIDRegister from '../components/PopupScanRFID.vue'
+import axios from 'axios'
 
 export default {
     setup() {
@@ -94,9 +95,9 @@ export default {
     },
     mounted() {
         this.socket = io('http://localhost:5000');
-        this.socket.on('rfid', (data) => {
+        this.socket.on('rfid-register', (data) => {
             this.rfid_socketio = data
-            this.formData.rfid_number = data
+            this.rfid_number = data
         })
     },
     data() {
@@ -106,10 +107,11 @@ export default {
             port: null,
             rfid_socketio: '',
             formData: {
-                rfid_number: '',
-                nama: '',
-                seksi_bagian: ''
-            }
+
+            },
+            rfid_number: "",
+            nama: "",
+            seksi_bagian: ""
         }
     },
     components: {
@@ -122,11 +124,15 @@ export default {
         async simpanRFIDBaru() {
             try {
                 const response = await axios.post('http://localhost:5000/insertRFID', {
-                    rfid_number : this.formData.rfid_number,
-                    nama : this.formData.nama,
-                    seksi_bagian : this.formData.seksi_bagian
+                    rfid_number : this.rfid_number,
+                    nama : this.nama,
+                    seksi_bagian : this.seksi_bagian
                 })
-                    console.log(response.data.message)
+                    console.log(this.rfid_number)
+                    console.log(this.nama)
+
+                    console.log(this.seksi_bagian)
+
 
 
             } catch (error) {
