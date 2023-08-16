@@ -1,5 +1,6 @@
 <template>
     <div>
+
         <div class="" :class="storeToggle.pinia_collapsed_sidebar ? 'scan-container-collapsed' : 'scan-container-expanded'">
             <div class="scan-flex">
                 <h1 class="text-3xl font-blod pb-2">Video Stream Kamera</h1>
@@ -27,6 +28,7 @@
 <script>
 import io from 'socket.io-client';
 import PersistentTextArea from '../components/PersistentTextArea.vue'
+import ModalPopup from '../components/PopupScanRFID.vue'
 import { useStoreToggle } from '../stores/store';
 
 export default {

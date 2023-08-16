@@ -32,13 +32,14 @@
 </template>
   
 <script>
-import { useModalToggle } from '../stores/modal_state'
+import { useModalToggle, useModalToggleScanMasuk } from '../stores/modal_state'
 
 export default {
     setup() {
         const modalToggle = useModalToggle();
+        const modalToggleScanMasuk = useModalToggleScanMasuk()
 
-        return { modalToggle };
+        return { modalToggle, modalToggleScanMasuk };
     },
     props: {
     },
