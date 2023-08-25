@@ -9,6 +9,7 @@
   >
     <div class="scan-flex">
       <ModalRFIDRegister />
+      <PopupNotice />
       <h1>Register RFID</h1>
       <form class="space-y-4 md:space-y-6" @submit.prevent="simpanRFIDBaru">
         <div>
@@ -82,22 +83,30 @@
 
 <script>
 import io from 'socket.io-client';
-import { useStoreToggle } from '../stores/store'
+import {useStoreToggle} from '../stores/store'
 import {useModalToggle} from '../stores/modal_state'
+import {useNoticeToggle} from '../stores/notice_state'
 import ModalRFIDRegister from '../components/PopupScanRFID.vue'
+import PopupNotice from '../components/PopupNotice.vue'
 import axios from 'axios'
 
 export default {
     setup() {
         const storeToggle = useStoreToggle();
         const modalToggle = useModalToggle();
-        return { storeToggle, modalToggle };
+        const noticeToggle = useNoticeToggle();
+
+        return { storeToggle, modalToggle, noticeToggle };
     },
     mounted() {
         this.socket = io('http://localhost:5000');
         this.socket.on('rfid-register', (data) => {
             this.rfid_socketio = data
             this.rfid_number = data
+            this.modalToggle.rfidScanned("register")
+        })
+        this.socket.on('rfid-register-terdaftar', (data) => {
+            this.modalToggle.rfidScanned("register-terdaftar")
         })
     },
     data() {
@@ -116,26 +125,35 @@ export default {
     },
     components: {
         ModalRFIDRegister,
+        PopupNotice
     },
     methods: {
         websocketScanRFIDRegister(){
             this.websocket = new WebSocket("ws://localhost:5202")
+            this.modalToggle.toggleModal()
         },
         async simpanRFIDBaru() {
+            // tampilin notice
+            this.noticeToggle.toggleNotice()
+
+
             try {
                 const response = await axios.post('http://localhost:5000/insertRFID', {
                     rfid_number : this.rfid_number,
                     nama : this.nama,
                     seksi_bagian : this.seksi_bagian
                 })
-                    console.log(this.rfid_number)
-                    console.log(this.nama)
 
-                    console.log(this.seksi_bagian)
+                this.noticeToggle.toggleResult(true)
+                    // console.log(this.rfid_number)
+                    // console.log(this.nama)
+
+                    // console.log(this.seksi_bagian)
 
 
 
             } catch (error) {
+              this.noticeToggle.toggleResult(false)
                 console.error(error)
             }
         }

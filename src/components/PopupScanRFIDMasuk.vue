@@ -1,11 +1,11 @@
 <!-- Modal.vue -->
 <template>
-    <div class="modal-overlay" v-if="modalToggle.pinia_show_modal">
+    <div class="modal-overlay" v-show="modalToggleScanMasuk.pinia_show_modal_scan_masuk">
         <div class="modal">
             <div class="modal-content">
                 <!-- Modal content here -->
                 <slot></slot>
-                <div v-show="!modalToggle.pinia_show_modal_rfid_scanned">
+                <div v-show="!modalToggleScanMasuk.pinia_show_modal_scan_masuk_rfid_detected && modalToggleScanMasuk.pinia_sudahscan_show== false">
                     <h1>Silahkan Scan RFID anda ke Sensor.</h1>
                     <div role="status" class="center">
                         <svg aria-hidden="true"
@@ -21,11 +21,30 @@
                         <span class="sr-only">Loading...</span>
                     </div>
                 </div>
-                <div v-show="modalToggle.pinia_show_modal_rfid_scanned">
-                    <h1>Selamat Pulang.</h1>
-                    <h1>Sukses RFID Terdeteksi. Pesan ini akan tertutup dalam 3 detik</h1>
+                <div v-show="modalToggleScanMasuk.pinia_show_modal_scan_masuk_rfid_detected && modalToggleScanMasuk.pinia_welcome_show== false && modalToggleScanMasuk.pinia_cobalagi_show==false">
+                    <h1>Sukses RFID Terdeteksi. Silahkan tunggu untuk pengecekan Kehadiran.</h1>
                 </div>
-                <button @click="modalToggle.toggleModal">Close</button>
+                <div v-show="modalToggleScanMasuk.pinia_kehadiran_value_show">
+                    <h1>Kehadiran Sekarang: {{ modalToggleScanMasuk.pinia_kehadiran_value }}</h1>
+                </div>
+                <div v-show="modalToggleScanMasuk.pinia_show_modal_scan_masuk_overtime">
+                    <h1>Kehadiran anda melebihi 56 Jam.</h1>
+                </div>
+                <div v-show="modalToggleScanMasuk.pinia_3s_msg">
+                    <h1>Tertutup otomatis dalam 3 detik.</h1>
+                </div>
+                <div v-show="modalToggleScanMasuk.pinia_welcome_show">
+                    <h1>Selamat Datang</h1>
+                </div>
+                <div v-show="modalToggleScanMasuk.pinia_cobalagi_show">
+                    <h1>Tidak memenuhi kriteria masuk(tidak memakai helm)</h1>
+                    <h1>Mohon coba lagi.</h1>
+
+                </div>
+                <div v-show="modalToggleScanMasuk.pinia_sudahscan_show">
+                    <h1>Hari ini sudah scan.</h1>
+                </div>
+                <!-- <button @click="modalToggle.toggleModal">Close</button> -->
             </div>
         </div>
     </div>

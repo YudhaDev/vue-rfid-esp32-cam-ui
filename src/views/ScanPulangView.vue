@@ -31,8 +31,10 @@ export default {
         this.socket = io('http://localhost:5000');
         this.socket.on('rfid_pulang', (data) => {
             this.rfid_socketio = data
-            this.modalToggle.rfidScanned()
-            console.error("veritas")
+            this.modalToggle.rfidScanned("pulang")
+        })
+        this.socket.on('scan-pulang-sudah', (data) => {
+            this.modalToggle.rfidScanned("pulang-sudah")
         })
     },
     data() {
